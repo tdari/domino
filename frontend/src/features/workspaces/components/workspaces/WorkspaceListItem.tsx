@@ -1,4 +1,4 @@
-import { Delete } from "@mui/icons-material";
+import DeleteIcon from "@mui/icons-material/Delete";
 import LogoutIcon from "@mui/icons-material/Logout";
 import SettingsIcon from "@mui/icons-material/Settings";
 import {
@@ -111,7 +111,7 @@ export const WorkspaceListItem: FC<{
             <LogoutIcon fontSize="medium" />
           </Button>
           <Button size="small" color="error" onClick={handleDelete}>
-            <Delete />
+            <DeleteIcon />
           </Button>
           {isSelected ? (
             <Chip
