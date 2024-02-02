@@ -11,6 +11,7 @@ import {
   Button,
   Grid,
   Chip,
+  Divider,
 } from "@mui/material";
 import { type IWorkspaceSummary } from "context/workspaces/types";
 import { type FC } from "react";
@@ -75,16 +76,17 @@ export const WorkspaceListItem: FC<{
             }}
           >
             <Grid container>
-              <Grid item xs={12} md={3}>
-                <Typography sx={{ fontSize: 14, my: 0 }} color="text.secondary">
+              <Grid item xs={12} md={3} sx={{ mx: "auto" }}>
+                <Typography sx={{ fontSize: 16, my: 0 }} color="text.secondary">
                   Permission:
                 </Typography>
                 <Typography sx={{ fontSize: 14, my: 0 }}>
                   {workspace.user_permission}
                 </Typography>
               </Grid>
-              <Grid item xs={12} md={3}>
-                <Typography sx={{ fontSize: 14, my: 0 }} color="text.secondary">
+              <Divider orientation="vertical" flexItem />
+              <Grid item xs={12} md={3} sx={{ mx: "auto" }}>
+                <Typography sx={{ fontSize: 16, my: 0 }} color="text.secondary">
                   Status:
                 </Typography>
                 <Typography sx={{ fontSize: 14, my: 0 }}>
