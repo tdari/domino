@@ -10,8 +10,8 @@ import {
   CardActions,
   Button,
   Grid,
+  Chip,
 } from "@mui/material";
-import Chip from "@mui/material/Chip";
 import { type IWorkspaceSummary } from "context/workspaces/types";
 import { type FC } from "react";
 import { useNavigate } from "react-router-dom";
