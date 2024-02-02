@@ -1,3 +1,6 @@
+import { Delete } from "@mui/icons-material";
+import LogoutIcon from "@mui/icons-material/Logout";
+import SettingsIcon from "@mui/icons-material/Settings";
 import {
   Card,
   CardActionArea,
@@ -8,6 +11,7 @@ import {
   Button,
   Grid,
 } from "@mui/material";
+import Chip from "@mui/material/Chip";
 import { type IWorkspaceSummary } from "context/workspaces/types";
 import { type FC } from "react";
 import { useNavigate } from "react-router-dom";
@@ -43,7 +47,7 @@ export const WorkspaceListItem: FC<{
         sx={{
           display: "flex",
           flexDirection: "column",
-          borderColor: isSelected ? "darkgray" : "primary.main",
+          borderColor: isSelected ? "green" : "primary",
         }}
       >
         <CardActionArea
@@ -60,20 +64,30 @@ export const WorkspaceListItem: FC<{
             title={workspace.workspace_name}
             titleTypographyProps={{ variant: "body1" }}
             color={isSelected ? "success" : "primary.main"}
+            sx={{ py: 1 }}
           />
-          <CardContent sx={{ width: "100%" }}>
+          <CardContent
+            sx={{
+              width: "100%",
+              borderTop: 1,
+              borderBottom: 1,
+              borderColor: "grey.300",
+            }}
+          >
             <Grid container>
               <Grid item xs={12} md={3}>
                 <Typography sx={{ fontSize: 14, my: 0 }} color="text.secondary">
                   Permission:
                 </Typography>
-                <Typography>{workspace.user_permission}</Typography>
+                <Typography sx={{ fontSize: 14, my: 0 }}>
+                  {workspace.user_permission}
+                </Typography>
               </Grid>
               <Grid item xs={12} md={3}>
                 <Typography sx={{ fontSize: 14, my: 0 }} color="text.secondary">
                   Status:
                 </Typography>
-                <Typography>
+                <Typography sx={{ fontSize: 14, my: 0 }}>
                   {workspace.status === "accepted"
                     ? "Collaborating"
                     : "Refused"}
@@ -85,28 +99,30 @@ export const WorkspaceListItem: FC<{
         <CardActions sx={{ width: "100%" }}>
           <Button
             size="small"
-            color={isSelected ? "success" : "primary"}
-            onClick={handleSelect}
-          >
-            {isSelected ? "Selected" : "Select"}
-          </Button>
-          <Button
-            size="small"
-            color="info"
-            sx={{ ml: "auto" }}
+            color="primary"
             onClick={() => {
               handleSelect();
               navigate("/workspace-settings");
             }}
           >
-            Config
+            <SettingsIcon fontSize="medium" />
           </Button>
-          <Button size="small" color="warning" onClick={handleLeave}>
-            Leave
+          <Button size="small" color="primary" onClick={handleLeave}>
+            <LogoutIcon fontSize="medium" />
           </Button>
           <Button size="small" color="error" onClick={handleDelete}>
-            Delete
+            <Delete />
           </Button>
+          {isSelected ? (
+            <Chip
+              label="selected"
+              variant="filled"
+              color="success"
+              sx={{ ml: "auto" }}
+            />
+          ) : (
+            ""
+          )}
         </CardActions>
       </Card>
     </Grid>
