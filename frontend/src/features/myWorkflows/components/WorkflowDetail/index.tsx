@@ -171,12 +171,9 @@ export const WorkflowDetail: React.FC = () => {
     setAutoUpdate(true);
   }, []);
 
-  const onNodeDoubleClick = useCallback<NodeMouseHandler>(
-    (_, node: RunNode) => {
-      setSelectedNodeId(node.data.taskId);
-    },
-    [],
-  );
+  const onNodeClick = useCallback<NodeMouseHandler>((_, node: RunNode) => {
+    setSelectedNodeId(node.data.taskId);
+  }, []);
 
   return (
     <Grid container spacing={3}>
@@ -199,10 +196,7 @@ export const WorkflowDetail: React.FC = () => {
           {/* WorkflowPanel */}
           <Grid item xs={12} sx={{ paddingLeft: "1rem", paddingTop: "2vh" }}>
             <Paper sx={{ height: "44vh" }}>
-              <WorkflowPanel
-                ref={workflowPanelRef}
-                onNodeDoubleClick={onNodeDoubleClick}
-              />
+              <WorkflowPanel ref={workflowPanelRef} onNodeClick={onNodeClick} />
             </Paper>
           </Grid>
         </Grid>

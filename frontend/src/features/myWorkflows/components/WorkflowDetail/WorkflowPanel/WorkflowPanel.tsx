@@ -47,7 +47,7 @@ type OnInit<NodeData = any, EdgeData = any> =
 
 interface Props {
   onInit?: OnInit;
-  onNodeDoubleClick?: NodeMouseHandler;
+  onNodeClick?: NodeMouseHandler;
 }
 export interface WorkflowPanelRef {
   nodes: Node[];
@@ -89,10 +89,10 @@ const WorkflowPanel = forwardRef<WorkflowPanelRef, Props>(
       [props],
     );
 
-    const onNodeDoubleClick = useCallback<NodeMouseHandler>(
+    const onNodeClick = useCallback<NodeMouseHandler>(
       (e, n) => {
-        if (props.onNodeDoubleClick) {
-          props.onNodeDoubleClick(e, n);
+        if (props.onNodeClick) {
+          props.onNodeClick(e, n);
         }
         if (instance) {
           const nodeCenter = (n.width ?? 0) / 2;
@@ -160,7 +160,7 @@ const WorkflowPanel = forwardRef<WorkflowPanelRef, Props>(
             nodes={nodes}
             edges={edges}
             onInit={onInit}
-            onNodeDoubleClick={onNodeDoubleClick}
+            onNodeClick={onNodeClick}
             fitView={true}
             nodesConnectable={false}
           >
